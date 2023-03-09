@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { SiTask } from "react-icons/si";
+import { MdTaskAlt } from "react-icons/md";
+import { FiExternalLink } from "react-icons/fi";
 import "./App.css";
+import { CreateButton } from "./components/Layout/CreateButton";
 import { Form } from "./components/Layout/Form";
 import { Header } from "./components/Layout/Header";
 import { Todos } from "./components/Todos/Todos";
+
 import { Task } from "./types";
 
 function App() {
@@ -30,8 +33,14 @@ function App() {
 
   return (
     <div className="app">
-      <Header icon={<SiTask />} />
-      <Form register={register} onSubmit={handleSubmit(onSubmit)} />
+      <Header icon={<MdTaskAlt />} />
+      <CreateButton
+        icon={<FiExternalLink />}
+        handleAddNew={() => {
+          console.log("hi");
+        }}
+      />
+      {/* <Form register={register} onSubmit={handleSubmit(onSubmit)} /> */}
       <Todos tasks={tasks} />
     </div>
   );
