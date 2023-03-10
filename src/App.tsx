@@ -13,17 +13,19 @@ import { Task } from "./types";
 function App() {
   const { register, handleSubmit } = useForm();
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     // Load tasks from local storage on mount
     const savedTasks = localStorage.getItem("tasks");
+
     if (savedTasks) {
       console.log("Load tasks");
       setTasks(JSON.parse(savedTasks));
     }
   }, []);
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: Record<string, string>) => {
     const newTask: Task = { name: data.todoName, body: data.todoBody };
     setTasks([...tasks, newTask]);
 
@@ -31,16 +33,34 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
   };
 
+  const handleOpen = (): void => {
+    setShowForm(true);
+  };
+
+  const handleClose = (): void => {
+    setShowForm(false);
+  };
+
+  const handleNewTask = (data: any): void => {
+    setShowForm(false);
+
+    console.log(data);
+    onSubmit(data);
+  };
+
   return (
     <div className="app">
       <Header icon={<MdTaskAlt />} />
-      <CreateButton
-        icon={<FiExternalLink />}
-        handleAddNew={() => {
-          console.log("hi");
-        }}
-      />
-      {/* <Form register={register} onSubmit={handleSubmit(onSubmit)} /> */}
+      <CreateButton icon={<FiExternalLink />} handleOpen={handleOpen} />
+      <div className={`form-container ${showForm ? "open" : ""}`}>
+        {showForm && (
+          <Form
+            onSubmit={handleSubmit(handleNewTask)}
+            register={register}
+            handleClose={handleClose}
+          />
+        )}
+      </div>
       <Todos tasks={tasks} />
     </div>
   );

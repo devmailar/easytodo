@@ -32,7 +32,7 @@
   color: #ffffff;
 }
 
-.app .openform .button {
+.app .form-control .button {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -49,21 +49,104 @@
   border: solid 0.2rem #21252b;
 }
 
-.app .openform .button:hover {
+.app .form-control .button:hover {
   background: #202224;
   color: #ffffff;
 }
 
 .app .form {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
 
-  /* background: #da6923; */
+  background: #21252b;
+  border: solid 0.2rem #21252b;
+  box-shadow: 0.2rem 0.1rem 0.6rem #1c1c1c;
+  width: 30rem;
+  padding: 1rem;
 }
-.app .form .input {
+
+.app .form .input-text {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app .form .input-text label {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.app .form .input-text label input {
+  padding: 0.3rem;
+
+  background: #282c34;
+  color: #ffffff;
+  border: none;
+
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.app .form .input-text label textarea {
+  padding: 0.3rem;
+
+  background: #282c34;
+  color: #ffffff;
+  border: none;
+
+  font-size: 1em;
+  font-weight: bold;
+
+  resize: vertical;
+}
+
+.app .form .input-submit {
+  display: flex;
+  gap: 1rem;
+}
+
+.app .form .input-submit input {
+  padding: 0.3rem;
+
+  background: #282c34;
+  color: #ffffff;
+  border: none;
+
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.app .form .input-submit input {
+  background: #32a16d;
+  color: #ffffff;
+  border: none;
+
+  font-size: 1em;
+  font-weight: bold;
+
+  padding: 0.6rem 2rem;
+  cursor: pointer;
+}
+
+.app .form .input-submit button {
+  padding: 0.3rem;
+
+  background: #a13232;
+  color: #ffffff;
+  border: none;
+
+  font-size: 1em;
+  font-weight: bold;
+
+  padding: 0.6rem 0.6rem;
+  cursor: pointer;
 }
 
 .app .todos {
@@ -113,4 +196,15 @@
 
   white-space: normal;
   word-break: break-all;
+}
+
+/* Animation */
+.form-container {
+  transition: all 1.5s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.form-container.open {
+  max-height: 100vh;
 }
