@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { MdTaskAlt } from "react-icons/md";
 import { FiExternalLink } from "react-icons/fi";
+import { MdTaskAlt } from "react-icons/md";
 import "./App.css";
 import { CreateButton } from "./components/Layout/CreateButton";
 import { Form } from "./components/Layout/Form";
@@ -16,7 +16,6 @@ function App() {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
-    // Load tasks from local storage on mount
     const savedTasks = localStorage.getItem("tasks");
 
     if (savedTasks) {
@@ -26,10 +25,20 @@ function App() {
   }, []);
 
   const onSubmit = (data: Record<string, string>) => {
-    const newTask: Task = { name: data.todoName, body: data.todoBody };
+    const newTask: Task = {
+      name: data.todoName,
+      body: data.todoBody,
+      tag: data.todoTag,
+      date: new Date().toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      }),
+    };
     setTasks([...tasks, newTask]);
 
-    // Save tasks to local storage whenever a task is added
     localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
   };
 

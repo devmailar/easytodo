@@ -63,7 +63,7 @@
   background: #21252b;
   border: solid 0.2rem #21252b;
   box-shadow: 0.2rem 0.1rem 0.6rem #1c1c1c;
-  width: 30rem;
+  width: 21rem;
   padding: 1rem;
 }
 
@@ -173,12 +173,19 @@
 
   width: 20rem;
   min-height: 8rem;
-
-  padding: 1rem;
   font-size: 0.8rem;
 }
 
-.app .todos .task .title {
+.app .todos .task .title-wrapper {
+  display: flex;
+  align-items: center;
+  /* background: #3b5069; */
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.app .todos .task .title-wrapper .title {
   display: flex;
 
   font-size: 1.4em;
@@ -188,14 +195,57 @@
   word-break: break-all;
 }
 
-.app .todos .task .body {
+.app .todos .task .body-wrapper {
+  display: flex;
+  align-items: center;
+  /* background: #3b5069; */
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.app .todos .task .body-wrapper .body {
   display: flex;
 
-  font-size: 1.4em;
+  font-size: 1.2em;
   color: #e7e7e7;
 
   white-space: normal;
   word-break: break-all;
+}
+
+.app .todos .task .footer-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  /* background: #3b5069; */
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  /* Updated code */
+  margin-top: auto;
+}
+
+.app .todos .task .footer-wrapper .tag {
+  font-size: 1em;
+  font-weight: bold;
+  background: #3b738f;
+  padding: 0.4rem;
+}
+
+.app .todos .task .footer-wrapper .date-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2em;
+}
+
+.app .todos .task .footer-wrapper .date-wrapper .date {
+  font-size: 1em;
+  font-weight: bold;
+  padding: 0.4rem;
 }
 
 /* Animation */

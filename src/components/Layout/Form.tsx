@@ -43,6 +43,13 @@ export const Form = ({ onSubmit, register, handleClose }: Form) => {
         </label>
       </div>
 
+      <div className="input-text">
+        <label>
+          Task tag #Dev, #Design, #?
+          <input type="text" {...register("todoTag")} required />
+        </label>
+      </div>
+
       <div className="input-submit">
         <input type="submit" value="Add" />
         <button onClick={handleFormClose}>Close</button>
