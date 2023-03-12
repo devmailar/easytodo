@@ -201,6 +201,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
+  cursor: pointer;
 }
 
 .app .todos .task .title-wrapper .actions svg {
@@ -214,12 +215,24 @@
   background: #f7e3af;
 }
 
+.app .todos .task .title-wrapper .actions svg:nth-child(1):hover {
+  background: #ecd28f;
+}
+
 .app .todos .task .title-wrapper .actions svg:nth-child(2) {
   background: #a3b09a;
 }
 
+.app .todos .task .title-wrapper .actions svg:nth-child(2):hover {
+  background: #adce95;
+}
+
 .app .todos .task .title-wrapper .actions svg:nth-child(3) {
   background: #b07a83;
+}
+
+.app .todos .task .title-wrapper .actions svg:nth-child(3):hover {
+  background: #e6788a;
 }
 
 .app .todos .task .body-wrapper {
