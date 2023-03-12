@@ -24,24 +24,6 @@ function App() {
     }
   }, []);
 
-  const onSubmit = (data: Record<string, string>) => {
-    const newTask: Task = {
-      name: data.todoName,
-      body: data.todoBody,
-      tag: data.todoTag,
-      date: new Date().toLocaleString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-      }),
-    };
-    setTasks([...tasks, newTask]);
-
-    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
-  };
-
   const handleOpen = (): void => {
     setShowForm(true);
   };
@@ -50,11 +32,26 @@ function App() {
     setShowForm(false);
   };
 
-  const handleNewTask = (data: any): void => {
+  const handleNewTask = (data: Record<string, string>) => {
     setShowForm(false);
 
-    console.log(data);
-    onSubmit(data);
+    const formatDate = new Date().toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    });
+
+    const newTask: Task = {
+      name: data.todoName,
+      body: data.todoBody,
+      tag: data.todoTag,
+      date: formatDate,
+    };
+
+    setTasks([...tasks, newTask]);
+    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
   };
 
   return (

@@ -179,6 +179,7 @@
 .app .todos .task .title-wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   /* background: #3b5069; */
   padding-top: 1rem;
   padding-left: 1rem;
@@ -193,6 +194,32 @@
 
   white-space: normal;
   word-break: break-all;
+}
+
+.app .todos .task .title-wrapper .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.app .todos .task .title-wrapper .actions svg {
+  border-radius: 0.4rem;
+  color: #21252b;
+  padding: 0.4rem;
+  font-size: 1em;
+}
+
+.app .todos .task .title-wrapper .actions svg:nth-child(1) {
+  background: #f7e3af;
+}
+
+.app .todos .task .title-wrapper .actions svg:nth-child(2) {
+  background: #a3b09a;
+}
+
+.app .todos .task .title-wrapper .actions svg:nth-child(3) {
+  background: #b07a83;
 }
 
 .app .todos .task .body-wrapper {

@@ -1,6 +1,9 @@
 import { FC } from "react";
 import { Task } from "../../types";
 import { BsClockHistory } from "react-icons/bs";
+import { GiCheckMark } from "react-icons/gi";
+import { AiOutlineDelete } from "react-icons/ai";
+import { BsPen } from "react-icons/bs";
 
 type TodosProps = {
   tasks: Task[];
@@ -16,6 +19,11 @@ export const Todos: FC<TodosProps> = ({ tasks }) => (
         <div key={index} className="task">
           <div className="title-wrapper">
             <h1 className="title">{task.name}</h1>
+            <div className="actions">
+              <BsPen />
+              <GiCheckMark />
+              <AiOutlineDelete />
+            </div>
           </div>
 
           <div className="body-wrapper">
