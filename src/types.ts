@@ -1,7 +1,12 @@
-// types.ts
-export type Task = {
+export type TodoProps = {
   name: string;
-  body: string;
-  tag: string;
+  description: string;
+  priority: string;
   date: string;
+};
+
+export type FormProps = {
+  onSubmit: any;
+  register: any;
+  handleClose: () => void;
 };
