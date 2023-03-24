@@ -1,119 +1,144 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { FiExternalLink } from "react-icons/fi";
-import { MdTaskAlt } from "react-icons/md";
-import { toast, ToastContainer } from "react-toastify";
-import "./App.css";
-import { CreateButton } from "./components/Layout/CreateButton";
-import { Form } from "./components/Layout/Form";
-import { Header } from "./components/Layout/Header";
-import { Todos } from "./components/Todos/Todos";
-import { Task } from "./types";
-import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { GoPlus } from 'react-icons/go';
+import { MdTaskAlt } from 'react-icons/md';
+import './App.css';
+import { AddForm } from './components/layout/AddForm/AddForm';
+import { Button } from './components/layout/Button';
+import { EditForm } from './components/layout/EditForm/EditForm';
+import { Header } from './components/layout/Header';
+import { Todos } from './components/layout/Todos/Todos';
+import { TodoProps } from './types';
 
 function App() {
   const { register, handleSubmit } = useForm();
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [showForm, setShowForm] = useState(false);
+  const [todos, setTodos] = useState<TodoProps[]>([]);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [completedTodo, setCompletedTodo] = useState(false);
 
+  /**
+   * This effect hook retrieves stored todos from local storage and updates state
+   * when the component mounts, running once due to an empty dependency array.
+   */
   useEffect(() => {
-    const savedTasks = localStorage.getItem("tasks");
-
-    if (savedTasks) {
-      console.log("Load tasks");
-      setTasks(JSON.parse(savedTasks));
-    }
+    const todos = localStorage.getItem('todos');
+    todos && setTodos(JSON.parse(todos));
   }, []);
 
-  const handleOpen = (): void => {
-    setShowForm(true);
-  };
-
-  const handleClose = (): void => {
-    setShowForm(false);
-  };
-
-  const handleNewTask = (data: Record<string, string>) => {
-    setShowForm(false);
-
-    const formatDate = new Date().toLocaleString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
-
-    const newTask: Task = {
-      name: data.todoName,
-      body: data.todoBody,
-      tag: data.todoTag,
-      date: formatDate,
-    };
-
-    setTasks([...tasks, newTask]);
-    localStorage.setItem("tasks", JSON.stringify([...tasks, newTask]));
-  };
-
-  const handleEdit = (id: number, name: string) => {
-    console.log(`Edit clicked on ${id} ${name}`);
-  };
-
-  const handleComplete = (id: number, name: string) => {
-    console.log(`Complete clicked on ${id} ${name}`);
-  };
-
-  const handleDelete = (id: number, name: string) => {
-    console.log(`Delete clicked on ${id} ${name}`);
-
-    const updatedTasks = tasks.filter((task, index) => index !== id);
-
-    if (confirm(`Are you sure you want to delete todo: ${name}`)) {
-      setTasks(updatedTasks);
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-
-      toast.error(`Deleted todo: ${name}!`, {
-        theme: "dark",
-        position: "top-center",
-        draggable: false,
-        pauseOnHover: false,
-        autoClose: 6000,
-      });
+  /**
+   * This function sets the values of showAddForm and showEditForm based on the value of the type argument
+   * If the value is 'add', it sets showAddForm to true and showEditForm to false.
+   * If the value is 'edit', it sets showAddForm to false and showEditForm to true.
+   * Otherwise, it sets both values to false.
+   * @param type An optional string parameter that specifies the type of form to show {'add' or 'edit'}
+   * @returns Nothing
+   */
+  const formHandler = (type: 'add' | 'edit' | undefined = undefined): void => {
+    if (type === 'add') {
+      setShowAddForm(true);
+      setShowEditForm(false);
+    } else if (type === 'edit') {
+      setShowAddForm(false);
+      setShowEditForm(true);
+    } else {
+      setShowAddForm(false);
+      setShowEditForm(false);
     }
+  };
+
+  const form = {
+    addSubmit: (data: Record<string, string>) => {
+      try {
+        const now = {
+          getDate: () =>
+            new Date().toLocaleString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+            }),
+        };
+
+        const newTodo: TodoProps = {
+          name: data.todoName,
+          description: data.todoDescription,
+          priority: data.todoPriority,
+          date: now.getDate(),
+        };
+
+        setTodos([...todos, newTodo]);
+        localStorage.setItem('todos', JSON.stringify([...todos, newTodo]));
+
+        formHandler(); // closes form if no parameter set
+      } catch (exception) {
+        console.error(exception);
+      }
+    },
+    editSubmit: (data: Record<string, string>) => {
+      try {
+        alert(JSON.stringify(data));
+      } catch (exception) {
+        console.error(exception);
+      }
+    },
+  };
+
+  const todo = {
+    editTodo: (id: number, name: string) => {
+      console.log(`edit button clicked on ${id} ${name}`);
+
+      formHandler('edit');
+    },
+    completeTodo: (id: number, name: string) => {
+      console.log(`complete button clicked on ${id} ${name}`);
+
+      const ticket = document.getElementById(`ticket-${id}`);
+
+      if (ticket) {
+        if (!completedTodo) {
+          ticket.style.opacity = '0.8';
+          ticket.style.backgroundColor = '#1A2A21'; //greenish color code
+        } else {
+          ticket.style.opacity = '1';
+          ticket.style.backgroundColor = '#1a1e23';
+        }
+        setCompletedTodo(!completedTodo);
+      }
+    },
+    deleteTodo: (id: number, name: string) => {
+      console.log(`delete button clicked on ${id} ${name}`);
+
+      try {
+        const updatedTodos = todos.filter((_todo, index) => index !== id);
+
+        if (confirm(`Are you sure you want to delete todo: ${name}`)) {
+          setTodos(updatedTodos);
+          localStorage.setItem('todos', JSON.stringify(updatedTodos));
+        }
+      } catch (exception) {
+        console.log(exception);
+      }
+    },
   };
 
   return (
     <div className="app">
       <Header icon={<MdTaskAlt />} />
-      <CreateButton icon={<FiExternalLink />} handleOpen={handleOpen} />
-      <div className={`form-container ${showForm ? "open" : ""}`}>
-        {showForm && (
-          <Form
-            onSubmit={handleSubmit(handleNewTask)}
-            register={register}
-            handleClose={handleClose}
-          />
-        )}
-      </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+      <Button icon={<GoPlus />} handleClick={() => formHandler('add')} />
+      {showAddForm && (
+        <AddForm onSubmit={handleSubmit(form.addSubmit)} register={register} handleClose={() => formHandler()} />
+      )}
+      {showEditForm && (
+        <EditForm onSubmit={handleSubmit(form.editSubmit)} register={register} handleClose={() => formHandler()} />
+      )}
       <Todos
-        tasks={tasks}
-        handleEdit={handleEdit}
-        handleComplete={handleComplete}
-        handleDelete={handleDelete}
+        todos={todos}
+        handleEditClick={(id: number, name: string) => todo.editTodo(id, name)}
+        handleCompleteClick={(id: number, name: string) => todo.completeTodo(id, name)}
+        handleDeleteClick={(id: number, name: string) => todo.deleteTodo(id, name)}
       />
-      <ToastContainer />
     </div>
   );
 }

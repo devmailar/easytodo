@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/lato');
+
 .app {
   display: flex;
   flex-direction: column;
@@ -12,7 +14,7 @@
   margin: 5rem;
 }
 
-.app .header {
+.app .app-header {
   display: flex;
   align-items: center;
   gap: 0.3rem;
@@ -20,27 +22,28 @@
   /* background: #3e6f99; */
 }
 
-.app .header svg {
+.app .app-header svg {
   font-size: 2.4rem;
   color: #828997;
 }
 
-.app .header .title {
+.app .app-header .title {
   font-size: 2rem;
   font-weight: 600;
 
   color: #ffffff;
 }
 
-.app .form-control .button {
+.app .app-form-control button {
   display: flex;
   align-items: center;
   gap: 0.6rem;
 
   background: #21252b;
-  color: #828997;
+  color: #bec1ca;
 
-  font-size: 1.2em;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.4em;
   font-weight: normal;
 
   padding: 0.7rem 0.9rem;
@@ -49,243 +52,13 @@
   border: solid 0.2rem #21252b;
 }
 
-.app .form-control .button:hover {
+.app .app-form-control button:hover {
   background: #202224;
   color: #ffffff;
 }
 
-.app .form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 2rem;
-
-  background: #21252b;
-  border: solid 0.2rem #21252b;
-  box-shadow: 0.2rem 0.1rem 0.6rem #1c1c1c;
-  width: 21rem;
-  padding: 1rem;
-}
-
-.app .form .input-text {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.app .form .input-text label {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 0.5rem;
-
-  font-weight: bold;
-  font-size: 1em;
-}
-
-.app .form .input-text label input {
-  padding: 0.3rem;
-
-  background: #282c34;
-  color: #ffffff;
-  border: none;
-
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.app .form .input-text label textarea {
-  padding: 0.3rem;
-
-  background: #282c34;
-  color: #ffffff;
-  border: none;
-
-  font-size: 1em;
-  font-weight: bold;
-
-  resize: vertical;
-}
-
-.app .form .input-submit {
-  display: flex;
-  gap: 1rem;
-}
-
-.app .form .input-submit input {
-  padding: 0.3rem;
-
-  background: #282c34;
-  color: #ffffff;
-  border: none;
-
-  font-size: 1em;
-  font-weight: bold;
-}
-
-.app .form .input-submit input {
-  background: #32a16d;
-  color: #ffffff;
-  border: none;
-
-  font-size: 1em;
-  font-weight: bold;
-
-  padding: 0.6rem 2rem;
-  cursor: pointer;
-}
-
-.app .form .input-submit button {
-  padding: 0.3rem;
-
-  background: #a13232;
-  color: #ffffff;
-  border: none;
-
-  font-size: 1em;
-  font-weight: bold;
-
-  padding: 0.6rem 0.6rem;
-  cursor: pointer;
-}
-
-.app .todos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-
-  padding: 1rem;
-
-  background: #21252b;
-  /* border-radius: 1rem; */
-
-  opacity: 0.7;
-}
-
-.app .todos .task {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  background: #1a1e23;
-  box-shadow: inset 0 0 0.5px 1px #ffffff1a, 0 0 0 1px #14151a13,
-    0 0.3px 0.4px #14151a05, 0 0.9px 1.5px #14151a0b, 0 3.5px 6px #14151a17;
-
-  width: 20rem;
-  min-height: 8rem;
-  font-size: 0.8rem;
-}
-
-.app .todos .task .title-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* background: #3b5069; */
-  padding-top: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.app .todos .task .title-wrapper .title {
-  display: flex;
-
-  font-size: 1.4em;
-  color: #d3d3d3;
-
-  white-space: normal;
-  word-break: break-all;
-}
-
-.app .todos .task .title-wrapper .actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  cursor: pointer;
-}
-
-.app .todos .task .title-wrapper .actions svg {
-  border-radius: 0.4rem;
-  color: #21252b;
-  padding: 0.4rem;
-  font-size: 1em;
-}
-
-.app .todos .task .title-wrapper .actions svg:nth-child(1) {
-  background: #f7e3af;
-}
-
-.app .todos .task .title-wrapper .actions svg:nth-child(1):hover {
-  background: #ecd28f;
-}
-
-.app .todos .task .title-wrapper .actions svg:nth-child(2) {
-  background: #a3b09a;
-}
-
-.app .todos .task .title-wrapper .actions svg:nth-child(2):hover {
-  background: #adce95;
-}
-
-.app .todos .task .title-wrapper .actions svg:nth-child(3) {
-  background: #b07a83;
-}
-
-.app .todos .task .title-wrapper .actions svg:nth-child(3):hover {
-  background: #e6788a;
-}
-
-.app .todos .task .body-wrapper {
-  display: flex;
-  align-items: center;
-  /* background: #3b5069; */
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.app .todos .task .body-wrapper .body {
-  display: flex;
-
-  font-size: 1.2em;
-  color: #e7e7e7;
-
-  white-space: normal;
-  word-break: break-all;
-}
-
-.app .todos .task .footer-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 0.8em;
-  /* background: #3b5069; */
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-
-  /* Updated code */
-  margin-top: auto;
-}
-
-.app .todos .task .footer-wrapper .tag {
-  font-size: 1em;
-  font-weight: bold;
-  background: #3b738f;
-  padding: 0.4rem;
-}
-
-.app .todos .task .footer-wrapper .date-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.2em;
-}
-
-.app .todos .task .footer-wrapper .date-wrapper .date {
-  font-size: 1em;
-  font-weight: bold;
-  padding: 0.4rem;
+.app .app-form-control button:focus {
+  box-shadow: 0rem 0rem 0.5rem #4b643a;
 }
 
 /* Animation */
