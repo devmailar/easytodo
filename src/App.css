@@ -11,54 +11,7 @@
   box-shadow: 0.2rem 0.1rem 0.6rem #1c1c1c;
   /* height: 50vh; */
   padding: 2rem;
-  margin: 5rem;
-}
-
-.app .app-header {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-
-  /* background: #3e6f99; */
-}
-
-.app .app-header svg {
-  font-size: 2.4rem;
-  color: #828997;
-}
-
-.app .app-header .title {
-  font-size: 2rem;
-  font-weight: 600;
-
-  color: #ffffff;
-}
-
-.app .app-form-control button {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-
-  background: #21252b;
-  color: #bec1ca;
-
-  font-family: 'Lato', sans-serif;
-  font-size: 1.4em;
-  font-weight: normal;
-
-  padding: 0.7rem 0.9rem;
-
-  cursor: pointer;
-  border: solid 0.2rem #21252b;
-}
-
-.app .app-form-control button:hover {
-  background: #202224;
-  color: #ffffff;
-}
-
-.app .app-form-control button:focus {
-  box-shadow: 0rem 0rem 0.5rem #4b643a;
+  margin: 5vw;
 }
 
 /* Animation */
