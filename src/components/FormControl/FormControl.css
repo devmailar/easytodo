@@ -1,0 +1,31 @@
+.app-form-control {
+  display: flex;
+  gap: 1em;
+}
+.app-form-control button {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  background: #21252b;
+  border: solid 0.1rem #21252b;
+  color: #bec1ca;
+  font-family: "Lato", sans-serif;
+  font-size: 1.2em;
+  font-weight: normal;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: 0.4s ease-out;
+}
+.app-form-control button svg {
+  color: #00acc1;
+}
+.app-form-control button:hover {
+  box-shadow: 0rem 0rem 0.6rem #016976;
+  border-color: #016976;
+  transition: 0.4s ease-in;
+}
+.app-form-control button:focus {
+  box-shadow: 0rem 0rem 0.6rem #00acc1;
+  border-color: #00acc1;
+  transition: 0.4s ease-in;
+}/*# sourceMappingURL=FormControl.css.map */

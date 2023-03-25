@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { AiFillFilter } from 'react-icons/ai';
+import { FaHandSparkles } from 'react-icons/fa';
 import { GoPlus } from 'react-icons/go';
 import { MdTaskAlt } from 'react-icons/md';
 import './App.css';
-import { AddForm } from './components/layout/AddForm/AddForm';
-import { Button } from './components/layout/Button';
-import { EditForm } from './components/layout/EditForm/EditForm';
-import { Header } from './components/layout/Header';
-import { Todos } from './components/layout/Todos/Todos';
+import { AddForm } from './components/AddForm/AddForm';
+import { FormControl } from './components/FormControl/FormControl';
+import { EditForm } from './components/EditForm/EditForm';
+import { Header } from './components/Header/Header';
+import { Todos } from './components/Todos/Todos';
 import { TodoProps } from './types';
 
 function App() {
@@ -125,8 +127,13 @@ function App() {
 
   return (
     <div className="app">
-      <Header icon={<MdTaskAlt />} />
-      <Button icon={<GoPlus />} handleClick={() => formHandler('add')} />
+      <Header icon={<MdTaskAlt />} paragraphIcon={<FaHandSparkles />} />
+      <FormControl
+        addIcon={<GoPlus />}
+        filterIcon={<AiFillFilter />}
+        handleAddClick={() => formHandler('add')}
+        handleFilterClick={() => formHandler()}
+      />
       {showAddForm && (
         <AddForm onSubmit={handleSubmit(form.addSubmit)} register={register} handleClose={() => formHandler()} />
       )}
