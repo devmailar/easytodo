@@ -6,18 +6,19 @@ import { GoPlus } from 'react-icons/go';
 import { MdTaskAlt } from 'react-icons/md';
 import './App.css';
 import { AddForm } from './components/AddForm/AddForm';
-import { FormControl } from './components/FormControl/FormControl';
 import { EditForm } from './components/EditForm/EditForm';
+import { FormControl } from './components/FormControl/FormControl';
 import { Header } from './components/Header/Header';
 import { Todos } from './components/Todos/Todos';
 import { TodoProps } from './types';
 
 function App() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const [todos, setTodos] = useState<TodoProps[]>([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [completedTodo, setCompletedTodo] = useState(false);
+  const [todoId, setTodoId] = useState(0);
 
   /**
    * This effect hook retrieves stored todos from local storage and updates state
@@ -36,17 +37,9 @@ function App() {
    * @param type An optional string parameter that specifies the type of form to show {'add' or 'edit'}
    * @returns Nothing
    */
-  const formHandler = (type: 'add' | 'edit' | undefined = undefined): void => {
-    if (type === 'add') {
-      setShowAddForm(true);
-      setShowEditForm(false);
-    } else if (type === 'edit') {
-      setShowAddForm(false);
-      setShowEditForm(true);
-    } else {
-      setShowAddForm(false);
-      setShowEditForm(false);
-    }
+  const formHandler = (type: 'add' | 'edit' | undefined = undefined, id?: number): void => {
+    setShowAddForm(type === 'add');
+    setShowEditForm(type === 'edit');
   };
 
   const form = {
@@ -70,17 +63,31 @@ function App() {
           date: now.getDate(),
         };
 
-        setTodos([...todos, newTodo]);
         localStorage.setItem('todos', JSON.stringify([...todos, newTodo]));
-
-        formHandler(); // closes form if no parameter set
+        setTodos(prevTodos => [...prevTodos, newTodo]);
+        setValue('todoName', '');
+        setValue('todoDescription', '');
+        setValue('todoPriority', '');
+        formHandler();
       } catch (exception) {
         console.error(exception);
       }
     },
     editSubmit: (data: Record<string, string>) => {
       try {
-        alert(JSON.stringify(data));
+        const storedTodos = localStorage.getItem('todos');
+        if (!storedTodos) return;
+
+        const todos = JSON.parse(storedTodos);
+        const index = todoId;
+
+        todos[index].name = data.todoName;
+        todos[index].description = data.todoDescription;
+        todos[index].priority = data.todoPriority;
+
+        localStorage.setItem('todos', JSON.stringify(todos));
+        setTodos(todos);
+        formHandler();
       } catch (exception) {
         console.error(exception);
       }
@@ -88,21 +95,25 @@ function App() {
   };
 
   const todo = {
-    editTodo: (id: number, name: string) => {
-      console.log(`edit button clicked on ${id} ${name}`);
+    editTodo: (id: number, name: string, description: string, priority: string) => {
+      console.log({ id, name, description, priority });
 
       formHandler('edit');
+      setTodoId(id);
+      setValue('todoName', name);
+      setValue('todoDescription', description);
+      setValue('todoPriority', priority);
     },
     completeTodo: (id: number, name: string) => {
       console.log(`complete button clicked on ${id} ${name}`);
 
       const ticket = document.getElementById(`ticket-${id}`);
-
       if (ticket) {
         if (!completedTodo) {
           ticket.style.opacity = '0.8';
           ticket.style.backgroundColor = '#1A2A21'; //greenish color code
         } else {
+          setCompletedTodo(false);
           ticket.style.opacity = '1';
           ticket.style.backgroundColor = '#1a1e23';
         }
@@ -111,13 +122,12 @@ function App() {
     },
     deleteTodo: (id: number, name: string) => {
       console.log(`delete button clicked on ${id} ${name}`);
-
       try {
         const updatedTodos = todos.filter((_todo, index) => index !== id);
-
         if (confirm(`Are you sure you want to delete todo: ${name}`)) {
           setTodos(updatedTodos);
           localStorage.setItem('todos', JSON.stringify(updatedTodos));
+          formHandler();
         }
       } catch (exception) {
         console.log(exception);
@@ -142,7 +152,9 @@ function App() {
       )}
       <Todos
         todos={todos}
-        handleEditClick={(id: number, name: string) => todo.editTodo(id, name)}
+        handleEditClick={(id: number, name: string, description: string, priority: string) =>
+          todo.editTodo(id, name, description, priority)
+        }
         handleCompleteClick={(id: number, name: string) => todo.completeTodo(id, name)}
         handleDeleteClick={(id: number, name: string) => todo.deleteTodo(id, name)}
       />

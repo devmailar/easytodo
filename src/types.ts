@@ -1,4 +1,5 @@
 export type TodoProps = {
+  id?: number;
   name: string;
   description: string;
   priority: 'low' | 'medium' | 'high' | string;
@@ -7,7 +8,7 @@ export type TodoProps = {
 
 export type TodosProps = {
   todos: TodoProps[];
-  handleEditClick: (id: number, name: string) => void;
+  handleEditClick: (id: number, name: string, description: string, priority: string) => void;
   handleCompleteClick: (id: number, name: string) => void;
   handleDeleteClick: (id: number, name: string) => void;
 };
