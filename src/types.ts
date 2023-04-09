@@ -1,16 +1,20 @@
-export type TodoProps = {
+export type IssuesState = {
+  backlog: Issue[];
+  todo: Issue[];
+  inProgress: Issue[];
+  inReview: Issue[];
+  done: Issue[];
+};
+
+export type Issue = {
   id?: number;
   name: string;
   description: string;
   priority: 'low' | 'medium' | 'high' | string;
   date: string;
-};
-
-export type TodosProps = {
-  todos: TodoProps[];
-  handleEditClick: (id: number, name: string, description: string, priority: string) => void;
-  handleCompleteClick: (id: number, name: string) => void;
-  handleDeleteClick: (id: number, name: string) => void;
+  edit?: (id: number, name: string, description: string, priority: string) => void;
+  complete?: (id: number, name: string) => void;
+  delete?: (id: number, name: string) => void;
 };
 
 export type FormProps = {
