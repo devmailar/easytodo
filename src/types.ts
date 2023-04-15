@@ -1,13 +1,13 @@
-export type IssuesState = {
-  backlog: Issue[];
-  todo: Issue[];
-  inProgress: Issue[];
-  inReview: Issue[];
-  done: Issue[];
+export type TIssuesState = {
+  backlog: TIssue[];
+  todo: TIssue[];
+  inProgress: TIssue[];
+  inReview: TIssue[];
+  done: TIssue[];
 };
 
-export type Issue = {
-  id?: number;
+export type TIssue = {
+  id: number;
   name: string;
   description: string;
   priority: 'low' | 'medium' | 'high' | string;
@@ -17,7 +17,11 @@ export type Issue = {
   delete?: (id: number, name: string) => void;
 };
 
-export type FormProps = {
+export type TFormProps = {
+  name: string;
+  submitName: string;
+  theme: string;
+
   onSubmit: any;
   register: any;
   handleClose: () => void;
