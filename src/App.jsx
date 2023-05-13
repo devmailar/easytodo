@@ -1,5 +1,4 @@
-import AddForm from "@Components/AddForm";
-import EditForm from "@Components/EditForm";
+import Form from "@Components/Form";
 import Issues from "@Components/Issues";
 import List from "@Components/List";
 import Navbar from "@Components/Navbar";
@@ -42,7 +41,8 @@ function App() {
       />
       <Popup>
         {formType === "add" && (
-          <AddForm
+          <Form
+            formType="add"
             register={register}
             onSubmit={(data) => {
               issue.method.add(data, lists, setIssueId);
@@ -59,9 +59,12 @@ function App() {
         )}
 
         {formType === "edit" && (
-          <EditForm
+          <Form
+            formType="edit"
             register={register}
-            onSubmit={(data) => issue.method.edit(data, lists, prevList)}
+            onSubmit={(data) => {
+              issue.method.edit(data, lists, prevList);
+            }}
             onClose={() => {
               form.method.handleForm(
                 "CLOSE_ANY_FORM",

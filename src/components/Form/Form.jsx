@@ -1,8 +1,25 @@
 import { useState } from "react";
-import styles from "./styles/AddForm.module.css";
+import styles from "./styles/Form.module.css";
 
-const AddForm = ({ register, onSubmit, onClose }) => {
+const Form = ({
+  formType,
+  register,
+  onSubmit,
+  onClose,
+  issueId,
+  setPrevList,
+}) => {
   const [wordCount, setWordCount] = useState(0);
+
+  const countWords = (e) => {
+    setWordCount(e.target.value.trim().split(/\s+/).length);
+  };
+
+  const savePrevList = (e) => {
+    if (formType === "edit") {
+      setPrevList(e.target.value);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,8 +32,8 @@ const AddForm = ({ register, onSubmit, onClose }) => {
       minute: "numeric",
     });
 
-    const data = {
-      id: Date.now(),
+    const issue = {
+      id: formType === "add" ? Date.now() : issueId,
       created: now,
       list: e.target.list.value,
       title: e.target.title.value,
@@ -24,14 +41,14 @@ const AddForm = ({ register, onSubmit, onClose }) => {
       priority: e.target.priority.value,
     };
 
-    onSubmit(data);
+    onSubmit(issue);
     onClose();
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.header}>
-        <h2>Add new Issue</h2>
+        <h2>{formType === "add" ? "Add new Issue" : "Edit current Issue"}</h2>
         <button onClick={onClose}>&#10005;</button>
       </div>
       <div className={styles.body}>
@@ -46,13 +63,11 @@ const AddForm = ({ register, onSubmit, onClose }) => {
             rows="4"
             cols="50"
             required
-            onChange={(e) =>
-              setWordCount(e.target.value.trim().split(/\s+/).length)
-            }
+            onChange={countWords}
           />
         </div>
         <div className={styles.field}>
-          <label>Issue priority</label>
+          <label>Select Priority</label>
           <select {...register("priority")} required>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
@@ -60,8 +75,8 @@ const AddForm = ({ register, onSubmit, onClose }) => {
           </select>
         </div>
         <div className={styles.field}>
-          <label>Issue List</label>
-          <select {...register("list")} required>
+          <label>Select List</label>
+          <select {...register("list")} required onFocus={savePrevList}>
             <option value="backlog">Backlog</option>
             <option value="todos">To Do</option>
             <option value="inprogress">In Progress</option>
@@ -71,10 +86,10 @@ const AddForm = ({ register, onSubmit, onClose }) => {
         </div>
       </div>
       <div className={styles.submit}>
-        <input type="submit" value="Add" />
+        <input type="submit" value={formType === "add" ? "Add" : "Edit"} />
       </div>
     </form>
   );
 };
 
-export default AddForm;
+export default Form;
