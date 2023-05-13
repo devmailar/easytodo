@@ -82,11 +82,10 @@
   background: #202020;
   border: solid 0.1rem #505050;
   padding: 0.6rem 2rem;
-  cursor: pointer;
   transition: 0.3s ease-out;
+  cursor: pointer;
 }
 .form .submit input:hover {
-  background: #151515;
   padding: 1rem 2rem;
   transition: 0.3s ease-in;
-}/*# sourceMappingURL=Form.module.css.map */
+}/*# sourceMappingURL=EditForm.module.css.map */

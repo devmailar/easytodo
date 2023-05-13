@@ -1,9 +1,22 @@
-@import url('https://fonts.cdnfonts.com/css/lato');
+@import url("https://fonts.cdnfonts.com/css/lato");
+@import url("https://fonts.cdnfonts.com/css/roboto");
+
+:root {
+  font-family: system-ui;
+  background-color: #242424;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
 
 .app {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-
-  width: 100%;
-  height: 100%;
 }

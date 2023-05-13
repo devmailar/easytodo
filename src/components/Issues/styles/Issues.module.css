@@ -6,22 +6,31 @@
   box-shadow: 0rem 0rem 0.1rem rgba(148, 148, 148, 0.4666666667);
   padding: 1.5rem;
 }
-.issue .header .textWrapper h2 {
-  font-family: "Lato", sans-serif;
-  font-size: 1.3em;
+.issue .header h2 {
+  font-family: "Lato";
   font-weight: bold;
+  font-size: 1.3em;
   color: #dddddd;
   white-space: normal;
   word-break: break-all;
 }
-.issue .body .textWrapper p {
-  font-family: "Lato", sans-serif;
-  font-size: 1em;
+.issue .body p {
+  font-family: "Lato";
   font-weight: normal;
+  font-size: 1em;
   color: #c0c0c0;
   line-height: 1.4;
   white-space: normal;
   word-break: break-all;
+}
+.issue .body p button {
+  font-family: "Lato";
+  font-weight: bold;
+  color: #bd8282;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  margin: 0.2rem;
 }
 .issue .footer .row {
   display: flex;
@@ -36,7 +45,7 @@
   gap: 0.8em;
 }
 .issue .footer .row .infoWrapper p {
-  font-family: "Lato", sans-serif;
+  font-family: "Lato";
   font-size: 0.85em;
   color: #cacaca;
 }

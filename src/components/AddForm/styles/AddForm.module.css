@@ -1,0 +1,91 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  position: absolute;
+  background: #333333;
+  padding: 1.4em;
+}
+.form .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form .header h2 {
+  font-family: "Lato", sans-serif;
+  font-weight: 1000;
+  font-size: 1.6em;
+  color: #dddddd;
+}
+.form .header button {
+  font-weight: normal;
+  font-size: 1.4em;
+  color: #dddddd;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+.form .body {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.form .body .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+.form .body .field label {
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: #dddddd;
+}
+.form .body .field input {
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: normal;
+  color: #ced2dc;
+  background: #202020;
+  border: solid 0.1rem #505050;
+  padding: 0.5rem;
+}
+.form .body .field textarea {
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: normal;
+  color: #ced2dc;
+  line-height: 1.6;
+  background: #202020;
+  border: solid 0.1rem #505050;
+  padding: 0.5rem;
+  resize: vertical;
+}
+.form .body .field select {
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: normal;
+  color: #ced2dc;
+  background: #202020;
+  border: solid 0.1rem #505050;
+  padding: 0.5rem;
+}
+.form .submit {
+  display: flex;
+  flex-direction: column;
+}
+.form .submit input {
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: bold;
+  color: #ced2dc;
+  background: #202020;
+  border: solid 0.1rem #505050;
+  padding: 0.6rem 2rem;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+}
+.form .submit input:hover {
+  padding: 1rem 2rem;
+  transition: 0.3s ease-in;
+}/*# sourceMappingURL=AddForm.module.css.map */
