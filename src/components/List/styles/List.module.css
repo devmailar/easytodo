@@ -7,11 +7,11 @@
   padding: 1rem;
   background: #1c1c1c;
   box-shadow: 0rem 0rem 0.1rem #6f6f6f;
-  overflow-y: scroll;
-
-  .subtitle {
-    font-size: 1em;
-    font-weight: bold;
-    color: #868b8b;
-  }
+  overflow-y: auto;
 }
+.list p {
+  font-family: "Roboto";
+  font-weight: bold;
+  font-size: 1em;
+  color: #747474;
+}/*# sourceMappingURL=List.module.css.map */
