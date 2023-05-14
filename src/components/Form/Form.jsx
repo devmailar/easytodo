@@ -36,8 +36,8 @@ const Form = ({
       id: formType === "add" ? Date.now() : issueId,
       created: now,
       list: e.target.list.value,
-      title: e.target.title.value,
-      description: e.target.description.value,
+      title: e.target.title.value.trim().replace(/\s\s+/g, " "),
+      description: e.target.description.value.trim().replace(/\s\s+/g, " "),
       priority: e.target.priority.value,
     };
 
