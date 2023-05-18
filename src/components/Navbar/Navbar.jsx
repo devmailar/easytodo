@@ -1,7 +1,7 @@
-import { AiFillBug, AiFillFilter } from "react-icons/ai";
-import { BiBarChartSquare } from "react-icons/bi";
-import { GoPlus } from "react-icons/go";
-import styles from "./styles/Navbar.module.css";
+import { AiFillBug, AiFillFilter } from 'react-icons/ai';
+import { BiBarChartSquare } from 'react-icons/bi';
+import { GoPlus } from 'react-icons/go';
+import styles from './styles/Navbar.module.css';
 
 const Navbar = ({ createIssue }) => (
   <nav className={styles.nav}>

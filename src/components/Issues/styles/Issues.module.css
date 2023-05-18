@@ -4,83 +4,83 @@
   gap: 1em;
   background: #202020;
   box-shadow: 0rem 0rem 0.1rem rgba(148, 148, 148, 0.4666666667);
-  padding: 1.5rem;
+  padding: 1rem;
 }
 .issue .header h2 {
-  font-family: "Lato";
+  font-family: system-ui;
   font-weight: bold;
   font-size: 1.3em;
   color: #dddddd;
-  white-space: normal;
   word-break: break-all;
 }
 .issue .body p {
-  font-family: "Lato";
+  font-family: sans-serif;
   font-weight: normal;
   font-size: 1em;
-  color: #c0c0c0;
+  color: #cacaca;
   line-height: 1.4;
-  white-space: normal;
   word-break: break-all;
 }
 .issue .body p button {
-  font-family: "Lato";
+  font-family: sans-serif;
   font-weight: bold;
-  color: #bd8282;
+  color: #e27065;
   text-decoration: underline;
   background: none;
   border: none;
   margin: 0.2rem;
 }
-.issue .footer .row {
+.issue .footer .flex {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1rem;
 }
-.issue .footer .row .infoWrapper {
+.issue .footer .flex .info {
   display: flex;
   align-items: center;
-  gap: 0.8em;
+  flex-direction: row;
+  gap: 0.6em;
 }
-.issue .footer .row .infoWrapper p {
-  font-family: "Lato";
+.issue .footer .flex .info p {
+  font-family: sans-serif;
+  font-weight: bold;
   font-size: 0.85em;
   color: #cacaca;
 }
-.issue .footer .row .infoWrapper svg {
+.issue .footer .flex .info svg {
   font-size: 1em;
   color: #cacaca;
 }
-.issue .footer .row .controlWrapper {
+.issue .footer .flex .control {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
   cursor: pointer;
 }
-.issue .footer .row .controlWrapper svg {
+.issue .footer .flex .control svg {
   padding: 0.4rem;
   border-radius: 0.4rem;
   font-weight: bold;
   font-size: 0.8em;
   color: #1c1c1c;
 }
-.issue .footer .row .controlWrapper svg:nth-child(1) {
-  background-color: #f7e3af;
+.issue .footer .flex .control svg:nth-child(1) {
+  background: #f7e3af;
 }
-.issue .footer .row .controlWrapper svg:nth-child(1):hover {
-  background-color: #ffdd87;
+.issue .footer .flex .control svg:nth-child(1):hover {
+  background: #ffdd87;
 }
-.issue .footer .row .controlWrapper svg:nth-child(2) {
-  background-color: #a3b09a;
+.issue .footer .flex .control svg:nth-child(2) {
+  background: #a3b09a;
 }
-.issue .footer .row .controlWrapper svg:nth-child(2):hover {
-  background-color: #adce95;
+.issue .footer .flex .control svg:nth-child(2):hover {
+  background: #adce95;
 }
-.issue .footer .row .controlWrapper svg:nth-child(3) {
-  background-color: #b07a83;
+.issue .footer .flex .control svg:nth-child(3) {
+  background: #b07a83;
 }
-.issue .footer .row .controlWrapper svg:nth-child(3):hover {
-  background-color: #e6788a;
+.issue .footer .flex .control svg:nth-child(3):hover {
+  background: #e6788a;
 }/*# sourceMappingURL=Issues.module.css.map */

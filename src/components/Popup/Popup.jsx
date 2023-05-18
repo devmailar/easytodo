@@ -1,4 +1,4 @@
-import styles from "./styles/Popup.module.css";
+import styles from './styles/Popup.module.css';
 
 const Popup = ({ children }) => {
   return <div className={styles.popup}>{children}</div>;

@@ -41,7 +41,7 @@ const complete = (data, lists) => {
   const issue = {
     id: data.id,
     created: data.created,
-    list: "done",
+    list: 'done',
     title: data.title,
     description: data.description,
     priority: data.priority,
@@ -59,7 +59,7 @@ const complete = (data, lists) => {
 };
 
 const remove = (data, lists) => {
-  if (!window.confirm("Are you sure you want to delete issue: " + data.title)) {
+  if (!window.confirm('Are you sure you want to delete issue: ' + data.title)) {
     return;
   }
 

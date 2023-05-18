@@ -1,5 +1,5 @@
-import { useState } from "react";
-import styles from "./styles/Form.module.css";
+import { useState } from 'react';
+import styles from './styles/Form.module.css';
 
 const Form = ({
   formType,
@@ -16,7 +16,7 @@ const Form = ({
   };
 
   const savePrevList = (e) => {
-    if (formType === "edit") {
+    if (formType === 'edit') {
       setPrevList(e.target.value);
     }
   };
@@ -24,20 +24,20 @@ const Form = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const now = new Date().toLocaleString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      hour: "numeric",
-      minute: "numeric",
+    const now = new Date().toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
     });
 
     const issue = {
-      id: formType === "add" ? Date.now() : issueId,
+      id: formType === 'add' ? Date.now() : issueId,
       created: now,
       list: e.target.list.value,
-      title: e.target.title.value.trim().replace(/\s\s+/g, " "),
-      description: e.target.description.value.trim().replace(/\s\s+/g, " "),
+      title: e.target.title.value.trim().replace(/\s\s+/g, ' '),
+      description: e.target.description.value.trim().replace(/\s\s+/g, ' '),
       priority: e.target.priority.value,
     };
 
@@ -48,18 +48,18 @@ const Form = ({
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.header}>
-        <h2>{formType === "add" ? "Add new Issue" : "Edit current Issue"}</h2>
+        <h2>{formType === 'add' ? 'Add new Issue' : 'Edit current Issue'}</h2>
         <button onClick={onClose}>&#10005;</button>
       </div>
       <div className={styles.body}>
         <div className={styles.field}>
           <label>Summary</label>
-          <input type="text" {...register("title")} required />
+          <input type="text" {...register('title')} required />
         </div>
         <div className={styles.field}>
           <label>Description ({wordCount} words)</label>
           <textarea
-            {...register("description")}
+            {...register('description')}
             rows="4"
             cols="50"
             required
@@ -68,7 +68,7 @@ const Form = ({
         </div>
         <div className={styles.field}>
           <label>Select Priority</label>
-          <select {...register("priority")} required>
+          <select {...register('priority')} required>
             <option value="low">Low</option>
             <option value="medium">Medium</option>
             <option value="high">High</option>
@@ -76,7 +76,7 @@ const Form = ({
         </div>
         <div className={styles.field}>
           <label>Select List</label>
-          <select {...register("list")} required onFocus={savePrevList}>
+          <select {...register('list')} required onFocus={savePrevList}>
             <option value="backlog">Backlog</option>
             <option value="todos">To Do</option>
             <option value="inprogress">In Progress</option>
@@ -86,7 +86,7 @@ const Form = ({
         </div>
       </div>
       <div className={styles.submit}>
-        <input type="submit" value={formType === "add" ? "Add" : "Edit"} />
+        <input type="submit" value={formType === 'add' ? 'Add' : 'Edit'} />
       </div>
     </form>
   );

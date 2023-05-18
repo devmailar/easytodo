@@ -4,33 +4,31 @@
   gap: 1em;
   background: #202020;
   box-shadow: 0rem 0rem 0.1rem #94949477;
-  padding: 1.5rem;
+  padding: 1rem;
 
   .header {
     h2 {
-      font-family: "Lato";
+      font-family: system-ui;
       font-weight: bold;
       font-size: 1.3em;
       color: #dddddd;
-      white-space: normal;
       word-break: break-all;
     }
   }
 
   .body {
     p {
-      font-family: "Lato";
+      font-family: sans-serif;
       font-weight: normal;
       font-size: 1em;
-      color: #c0c0c0;
+      color: #cacaca;
       line-height: 1.4;
-      white-space: normal;
       word-break: break-all;
 
       button {
-        font-family: "Lato";
+        font-family: sans-serif;
         font-weight: bold;
-        color: #bd8282;
+        color: #e27065;
         text-decoration: underline;
         background: none;
         border: none;
@@ -40,55 +38,67 @@
   }
 
   .footer {
-    .row {
+    .flex {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
-      .infoWrapper {
+
+      .info {
         display: flex;
         align-items: center;
-        gap: 0.8em;
+        flex-direction: row;
+        gap: 0.6em;
+
         p {
-          font-family: "Lato";
+          font-family: sans-serif;
+          font-weight: bold;
           font-size: 0.85em;
           color: #cacaca;
         }
+
         svg {
           font-size: 1em;
           color: #cacaca;
         }
       }
 
-      .controlWrapper {
+      .control {
         display: flex;
         align-items: center;
-        gap: 0.6rem;
+        gap: 0.5rem;
         cursor: pointer;
+
         svg {
           padding: 0.4rem;
           border-radius: 0.4rem;
           font-weight: bold;
           font-size: 0.8em;
           color: #1c1c1c;
+
           &:nth-child(1) {
-            background-color: #f7e3af;
+            background: #f7e3af;
           }
+
           &:nth-child(1):hover {
-            background-color: #ffdd87;
+            background: #ffdd87;
           }
+
           &:nth-child(2) {
-            background-color: #a3b09a;
+            background: #a3b09a;
           }
+
           &:nth-child(2):hover {
-            background-color: #adce95;
+            background: #adce95;
           }
+
           &:nth-child(3) {
-            background-color: #b07a83;
+            background: #b07a83;
           }
+
           &:nth-child(3):hover {
-            background-color: #e6788a;
+            background: #e6788a;
           }
         }
       }
