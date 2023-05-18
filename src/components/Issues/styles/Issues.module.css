@@ -7,14 +7,12 @@
   padding: 1rem;
 }
 .issue .header h2 {
-  font-family: system-ui;
   font-weight: bold;
   font-size: 1.3em;
   color: #dddddd;
   word-break: break-all;
 }
 .issue .body p {
-  font-family: sans-serif;
   font-weight: normal;
   font-size: 1em;
   color: #cacaca;
@@ -22,7 +20,6 @@
   word-break: break-all;
 }
 .issue .body p button {
-  font-family: sans-serif;
   font-weight: bold;
   color: #e27065;
   text-decoration: underline;
@@ -44,7 +41,6 @@
   gap: 0.6em;
 }
 .issue .footer .flex .info p {
-  font-family: sans-serif;
   font-weight: bold;
   font-size: 0.85em;
   color: #cacaca;

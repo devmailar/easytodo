@@ -8,7 +8,6 @@
 
   .header {
     h2 {
-      font-family: system-ui;
       font-weight: bold;
       font-size: 1.3em;
       color: #dddddd;
@@ -18,7 +17,6 @@
 
   .body {
     p {
-      font-family: sans-serif;
       font-weight: normal;
       font-size: 1em;
       color: #cacaca;
@@ -26,7 +24,6 @@
       word-break: break-all;
 
       button {
-        font-family: sans-serif;
         font-weight: bold;
         color: #e27065;
         text-decoration: underline;
@@ -52,7 +49,6 @@
         gap: 0.6em;
 
         p {
-          font-family: sans-serif;
           font-weight: bold;
           font-size: 0.85em;
           color: #cacaca;

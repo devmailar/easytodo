@@ -1,10 +1,14 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 2em;
+
   position: absolute;
-  background: #333333;
-  padding: 1.4em;
+  padding: 1rem;
+  top: 10rem;
+
+  background: #2d2d2df0;
+  box-shadow: 0.2rem 0.1rem 0.6rem #333333;
 
   .header {
     display: flex;
@@ -12,7 +16,6 @@
     align-items: center;
 
     h2 {
-      font-family: "Lato", sans-serif;
       font-weight: 1000;
       font-size: 1.6em;
       color: #dddddd;
@@ -39,41 +42,38 @@
       gap: 0.6em;
 
       label {
-        font-family: sans-serif;
         font-weight: 600;
         font-size: 1em;
         color: #dddddd;
       }
 
       input {
-        font-family: "Lato", sans-serif;
         font-size: 1em;
         font-weight: normal;
         color: #ced2dc;
         background: #202020;
-        border: solid 0.1rem #505050;
+        border: solid 0.1rem #202020;
         padding: 0.5rem;
       }
 
       textarea {
-        font-family: "Lato", sans-serif;
+        font-family: system-ui;
         font-size: 1em;
         font-weight: normal;
         color: #ced2dc;
         line-height: 1.6;
         background: #202020;
-        border: solid 0.1rem #505050;
+        border: solid 0.1rem #202020;
         padding: 0.5rem;
         resize: vertical;
       }
 
       select {
-        font-family: "Lato", sans-serif;
         font-size: 1em;
         font-weight: normal;
         color: #ced2dc;
         background: #202020;
-        border: solid 0.1rem #505050;
+        border: solid 0.1rem #202020;
         padding: 0.5rem;
       }
     }
@@ -81,26 +81,20 @@
 
   .submit {
     display: flex;
+    align-items: center;
     flex-direction: column;
 
     input {
-      font-family: "Lato", sans-serif;
       font-size: 1em;
       font-weight: bold;
       color: #ced2dc;
 
-      background: #202020;
-      border: solid 0.1rem #505050;
-
+      background: #333333;
+      border: solid 0.1rem #333333;
       padding: 0.6rem 2rem;
+
       transition: 0.3s ease-out;
-
       cursor: pointer;
-
-      &:hover {
-        padding: 1rem 2rem;
-        transition: 0.3s ease-in;
-      }
     }
   }
 }
