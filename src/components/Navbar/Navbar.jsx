@@ -1,9 +1,10 @@
 import { AiFillBug, AiFillFilter } from 'react-icons/ai';
+import { VscTasklist } from 'react-icons/vsc';
 import { BiBarChartSquare } from 'react-icons/bi';
 import { GoPlus } from 'react-icons/go';
 import styles from './styles/Navbar.module.css';
 
-const Navbar = ({ createIssue }) => (
+const Navbar = ({ createIssue, showBoard, showStatics }) => (
   <nav className={styles.nav}>
     <div className={styles.brand}>
       <AiFillBug />
@@ -14,10 +15,10 @@ const Navbar = ({ createIssue }) => (
         <GoPlus />
       </button>
       <input type="text" placeholder="Search for bugs.." />
-      <button>
-        <AiFillFilter /> Filter
+      <button onClick={showBoard}>
+        <VscTasklist /> Board
       </button>
-      <button>
+      <button onClick={showStatics}>
         <BiBarChartSquare /> Statics
       </button>
     </div>
