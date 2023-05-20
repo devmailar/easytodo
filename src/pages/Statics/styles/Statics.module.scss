@@ -1,0 +1,54 @@
+.statics {
+  display: flex;
+
+  gap: 0.4em;
+  padding: 1rem;
+
+  background: #202020;
+  box-shadow: 0.2rem 0.1rem 0.6rem #202020;
+}
+
+.statics .histogram {
+  padding: 1rem;
+  background: #1c1c1c;
+  box-shadow: 0rem 0rem 0.1rem #6f6f6f;
+
+  width: 100%;
+  height: 100vh;
+
+  color: #dddddd;
+}
+
+.statics .histogram svg g text {
+  font-size: 0.8rem;
+}
+
+// .statics .pieChart {
+//   padding: 1rem;
+//   background: #1c1c1c;
+//   box-shadow: 0rem 0rem 0.1rem #6f6f6f;
+
+//   width: 100%;
+//   height: 100vh;
+
+//   color: #dddddd;
+// }
+
+.colours {
+  color: #9073ab;
+  color: #7397ab;
+  color: #aba473;
+  color: #ab7373;
+  color: #8aab73;
+}
+
+@media only screen and (max-width: 1200px) {
+  .app {
+    .board {
+      flex-wrap: wrap;
+      .board-list {
+        height: auto;
+      }
+    }
+  }
+}
