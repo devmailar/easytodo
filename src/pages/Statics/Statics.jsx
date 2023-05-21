@@ -1,14 +1,14 @@
-import { useLocalStorage } from '@Hooks/useLocalStorage';
+import { getStorage } from '@Hooks/storage';
 import * as d3 from 'd3';
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './styles/Statics.module.css';
 
 const Statics = () => {
-  const [backlog] = useLocalStorage('backlog', '[]');
-  const [todos] = useLocalStorage('todos', '[]');
-  const [inprogress] = useLocalStorage('inprogress', '[]');
-  const [inreview] = useLocalStorage('inreview', '[]');
-  const [done] = useLocalStorage('done', '[]');
+  const [backlog] = getStorage('backlog');
+  const [todos] = getStorage('todos');
+  const [inprogress] = getStorage('inprogress');
+  const [inreview] = getStorage('inreview');
+  const [done] = getStorage('done');
 
   const [data] = useState([
     { property: 'Backlog', value: backlog.length },
