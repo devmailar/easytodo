@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './styles/Form.module.css';
+import styles from './Form.module.scss';
 
 const Form = ({
   formType,

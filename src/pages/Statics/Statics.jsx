@@ -1,7 +1,7 @@
 import { getStorage } from '@Hooks/storage';
 import * as d3 from 'd3';
 import { useEffect, useRef, useState } from 'react';
-import styles from './styles/Statics.module.css';
+import styles from './Statics.module.scss';
 
 const Statics = () => {
   const [backlog] = getStorage('backlog');

@@ -2,7 +2,7 @@ import { AiFillBug, AiFillFilter } from 'react-icons/ai';
 import { VscTasklist } from 'react-icons/vsc';
 import { BiBarChartSquare } from 'react-icons/bi';
 import { GoPlus } from 'react-icons/go';
-import styles from './styles/Navbar.module.css';
+import styles from './Navbar.module.scss';
 
 const Navbar = ({ createIssue, showBoard, showStatics }) => (
   <nav className={styles.nav}>

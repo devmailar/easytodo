@@ -4,7 +4,7 @@ import { BsCalendar2Week, BsPen } from 'react-icons/bs';
 import { GiCheckMark } from 'react-icons/gi';
 import { GoIssueOpened } from 'react-icons/go';
 import { GrTextAlignFull } from 'react-icons/gr';
-import styles from './styles/Issues.module.css';
+import styles from './Issues.module.scss';
 
 const Header = (props) => (
   <div className={styles.header}>
