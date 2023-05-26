@@ -1,73 +1,74 @@
-const add = (data, lists, setIssueId) => {
+const add = (data, categories, setIssueId) => {
   const newItem = {
     id: data.id,
     created: data.created,
-    list: data.list,
+    category: data.category,
     title: data.title,
     description: data.description,
     priority: data.priority,
   };
 
-  const setList = lists[newItem.list].setter;
-  const listItems = lists[newItem.list].items;
+  const setCategory = categories[newItem.category].setter;
+  const categoryItems = categories[newItem.category].items;
 
   setIssueId(newItem.id);
-  setList([...listItems, newItem]);
+  setCategory([...categoryItems, newItem]);
 };
 
-const edit = (data, lists, prevList) => {
-  const editedItem = {
+const edit = (data, categories, prevCategory) => {
+  const newItem = {
     id: data.id,
     created: data.created,
-    list: data.list,
+    category: data.category,
     title: data.title,
     description: data.description,
     priority: data.priority,
   };
 
-  const itemsInPrevList = lists[prevList].items;
-  const itemsInNewList = lists[editedItem.list].items;
+  const itemsInPrevCategory = categories[prevCategory].items;
+  const itemsInNewCategory = categories[newItem.category].items;
 
-  const updatedItemsInPrevList = itemsInPrevList.filter((item) => {
-    return item.id !== editedItem.id;
+  const updatedItemsInPrevCategory = itemsInPrevCategory.filter((item) => {
+    return item.id !== newItem.id;
   });
 
-  lists[prevList].setter(updatedItemsInPrevList);
-  lists[editedItem.list].setter([...itemsInNewList, editedItem]);
+  categories[prevCategory].setter(updatedItemsInPrevCategory);
+  categories[newItem.category].setter([...itemsInNewCategory, newItem]);
 };
 
-const complete = (data, lists) => {
-  const prevlist = data.list;
-  const issue = {
+const complete = (data, categories) => {
+  const newItem = {
     id: data.id,
     created: data.created,
-    list: 'done',
+    category: 'done',
     title: data.title,
     description: data.description,
     priority: data.priority,
   };
 
-  const itemsInPrevList = lists[prevlist].items;
-  const itemsInNewList = lists[issue.list].items;
+  const prevCategory = data.category;
 
-  const updatedItemsInPrevList = itemsInPrevList.filter((item) => {
-    return item.id !== issue.id;
+  const itemsInPrevCategory = categories[prevCategory].items;
+  const itemsInNewCategory = categories[newItem.category].items;
+
+  const updatedItemsInPrevCategory = itemsInPrevCategory.filter((item) => {
+    return item.id !== newItem.id;
   });
 
-  lists[prevlist].setter(updatedItemsInPrevList);
-  lists[issue.list].setter([...itemsInNewList, issue]);
+  categories[prevCategory].setter(updatedItemsInPrevCategory);
+  categories[newItem.category].setter([...itemsInNewCategory, newItem]);
 };
 
-const remove = (data, lists) => {
+const remove = (data, categories) => {
   if (!window.confirm('Are you sure you want to delete issue: ' + data.title)) {
     return;
   }
 
-  const list = lists[data.list];
-  const issues = list.items;
+  const category = categories[data.category];
+  const issues = category.items;
   const updatedIssues = issues.filter((item) => item.id !== data.id);
 
-  list.setter(updatedIssues);
+  category.setter(updatedIssues);
 };
 
 export const issue = {

@@ -7,7 +7,7 @@ const Form = ({
   onSubmit,
   onClose,
   issueId,
-  setPrevList,
+  setPrevCategory,
 }) => {
   const [wordCount, setWordCount] = useState(0);
 
@@ -15,9 +15,9 @@ const Form = ({
     setWordCount(e.target.value.trim().split(/\s+/).length);
   };
 
-  const savePrevList = (e) => {
-    if (formType === 'edit') {
-      setPrevList(e.target.value);
+  const savePrevCategory = (e) => {
+    if (formType === 'EDIT') {
+      setPrevCategory(e.target.value);
     }
   };
 
@@ -33,9 +33,9 @@ const Form = ({
     });
 
     const issue = {
-      id: formType === 'add' ? Date.now() : issueId,
+      id: formType === 'ADD' ? Date.now() : issueId,
       created: now,
-      list: e.target.list.value,
+      category: e.target.category.value,
       title: e.target.title.value.trim().replace(/\s\s+/g, ' '),
       description: e.target.description.value.trim().replace(/\s\s+/g, ' '),
       priority: e.target.priority.value,
@@ -75,8 +75,8 @@ const Form = ({
           </select>
         </div>
         <div className={styles.field}>
-          <label>Select List</label>
-          <select {...register('list')} required onFocus={savePrevList}>
+          <label>Select Category</label>
+          <select {...register('category')} onFocus={savePrevCategory} required>
             <option value="backlog">Backlog</option>
             <option value="todos">To Do</option>
             <option value="inprogress">In Progress</option>
@@ -86,7 +86,7 @@ const Form = ({
         </div>
       </div>
       <div className={styles.submit}>
-        <input type="submit" value={formType === 'add' ? 'Add' : 'Edit'} />
+        <input type="submit" value={formType === 'ADD' ? 'Add' : 'Edit'} />
       </div>
     </form>
   );
