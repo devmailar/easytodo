@@ -10,4 +10,6 @@ Introducing a project that simplifies your task management! With this project, y
 * Statistics
 
 # Architecture
+`Easyodo.drawio`
+
 ![image](https://github.com/devmailar/easytodo/assets/83369389/7d1c8704-8df1-43fe-9f89-5db215704eff)
