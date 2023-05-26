@@ -1,4 +1,4 @@
-# Easytodo
+# Easytodo (BETA)
 Introducing a project that simplifies your task management! With this project, you can easily add and edit todos, delete and mark them done, and even view statistics on your progress. Stay on top of your tasks and increase your productivity with this user-friendly project.
 
 # Features
