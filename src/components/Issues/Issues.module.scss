@@ -1,0 +1,103 @@
+.issue {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background: #202020;
+  box-shadow: 0rem 0rem 0.1rem #94949477;
+  padding: 1rem;
+
+  .header {
+    h2 {
+      font-weight: bold;
+      font-size: 1.3em;
+      color: #dddddd;
+      word-break: break-all;
+    }
+  }
+
+  .body {
+    p {
+      font-weight: normal;
+      font-size: 1em;
+      color: #cacaca;
+      line-height: 1.4;
+      word-break: break-all;
+
+      button {
+        font-weight: bold;
+        color: #e27065;
+        text-decoration: underline;
+        background: none;
+        border: none;
+        margin: 0.2rem;
+      }
+    }
+  }
+
+  .footer {
+    .flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .info {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        gap: 0.6em;
+
+        p {
+          font-weight: bold;
+          font-size: 0.85em;
+          color: #cacaca;
+        }
+
+        svg {
+          font-size: 1em;
+          color: #cacaca;
+        }
+      }
+
+      .control {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+
+        svg {
+          padding: 0.4rem;
+          border-radius: 0.4rem;
+          font-weight: bold;
+          font-size: 0.8em;
+          color: #1c1c1c;
+
+          &:nth-child(1) {
+            background: #f7e3af;
+          }
+
+          &:nth-child(1):hover {
+            background: #ffdd87;
+          }
+
+          &:nth-child(2) {
+            background: #a3b09a;
+          }
+
+          &:nth-child(2):hover {
+            background: #adce95;
+          }
+
+          &:nth-child(3) {
+            background: #b07a83;
+          }
+
+          &:nth-child(3):hover {
+            background: #e6788a;
+          }
+        }
+      }
+    }
+  }
+}

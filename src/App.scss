@@ -1,0 +1,29 @@
+@import url('https://fonts.cdnfonts.com/css/lato');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui;
+  background: #242424;
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
