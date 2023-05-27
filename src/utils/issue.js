@@ -1,4 +1,4 @@
-const add = (data, categories, setIssueId) => {
+const add = (data, categories) => {
   const newItem = {
     id: data.id,
     created: data.created,
@@ -11,29 +11,43 @@ const add = (data, categories, setIssueId) => {
   const setCategory = categories[newItem.category].setter;
   const categoryItems = categories[newItem.category].items;
 
-  setIssueId(newItem.id);
   setCategory([...categoryItems, newItem]);
 };
 
 const edit = (data, categories, prevCategory) => {
-  const newItem = {
-    id: data.id,
-    created: data.created,
-    category: data.category,
-    title: data.title,
-    description: data.description,
-    priority: data.priority,
+  if (!data.id) {
+    console.error('Error: Item ID is null');
+    return;
+  }
+
+  const { id, created, category, title, description, priority } = data;
+
+  const editItem = {
+    id,
+    created,
+    category,
+    title,
+    description,
+    priority,
   };
 
   const itemsInPrevCategory = categories[prevCategory].items;
-  const itemsInNewCategory = categories[newItem.category].items;
+  const itemsInNewCategory = categories[editItem.category].items;
 
-  const updatedItemsInPrevCategory = itemsInPrevCategory.filter((item) => {
-    return item.id !== newItem.id;
+  const existingItemIndex = itemsInNewCategory.findIndex((item) => {
+    return item.id === editItem.id;
   });
 
-  categories[prevCategory].setter(updatedItemsInPrevCategory);
-  categories[newItem.category].setter([...itemsInNewCategory, newItem]);
+  if (existingItemIndex !== -1) {
+    itemsInNewCategory[existingItemIndex] = editItem;
+  } else {
+    const updatedItemsInPrevCategory = itemsInPrevCategory.filter((item) => {
+      return item.id !== editItem.id;
+    });
+
+    categories[prevCategory].setter(updatedItemsInPrevCategory);
+    categories[editItem.category].setter([...itemsInNewCategory, editItem]);
+  }
 };
 
 const complete = (data, categories) => {
@@ -71,11 +85,4 @@ const remove = (data, categories) => {
   category.setter(updatedIssues);
 };
 
-export const issue = {
-  method: {
-    add,
-    edit,
-    complete,
-    remove,
-  },
-};
+export { add, edit, complete, remove };
