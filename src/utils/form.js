@@ -4,6 +4,7 @@ const handleForm = (type, data, setFormType, setValue) => {
   switch (type) {
     case 'OPEN_ADD_FORM':
       setFormType('ADD');
+      setValue('id', '');
       setValue('title', '');
       setValue('description', '');
       setValue('priority', '');
@@ -11,21 +12,15 @@ const handleForm = (type, data, setFormType, setValue) => {
       break;
     case 'OPEN_EDIT_FORM':
       setFormType('EDIT');
+      setValue('id', data.id);
       setValue('title', data.title);
       setValue('description', data.description);
       setValue('priority', data.priority);
       setValue('category', data.category);
-      break;
-    case 'CLOSE_ANY_FORM':
-      setFormType('close');
       break;
     default:
       break;
   }
 };
 
-export const form = {
-  method: {
-    handleForm,
-  },
-};
+export { handleForm };

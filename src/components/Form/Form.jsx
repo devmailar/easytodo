@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Form.module.scss';
 
 const Form = ({
   formType,
   register,
+  getValues,
   onSubmit,
   onClose,
-  issueId,
   setPrevCategory,
 }) => {
   const [wordCount, setWordCount] = useState(0);
@@ -15,11 +15,11 @@ const Form = ({
     setWordCount(e.target.value.trim().split(/\s+/).length);
   };
 
-  const savePrevCategory = (e) => {
-    if (formType === 'EDIT') {
-      setPrevCategory(e.target.value);
-    }
-  };
+  if (formType === 'EDIT') {
+    useEffect(() => {
+      setPrevCategory(getValues('category'));
+    }, []);
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const Form = ({
     });
 
     const issue = {
-      id: formType === 'ADD' ? Date.now() : issueId,
+      id: formType === 'ADD' ? Date.now() : getValues('id'),
       created: now,
       category: e.target.category.value,
       title: e.target.title.value.trim().replace(/\s\s+/g, ' '),
@@ -76,7 +76,7 @@ const Form = ({
         </div>
         <div className={styles.field}>
           <label>Select Category</label>
-          <select {...register('category')} onFocus={savePrevCategory} required>
+          <select {...register('category')} required>
             <option value="backlog">Backlog</option>
             <option value="todos">To Do</option>
             <option value="inprogress">In Progress</option>
