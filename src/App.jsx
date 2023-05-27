@@ -9,15 +9,15 @@ import { createStorage } from '@Hooks/storage';
 import Board from '@Pages/Board';
 import Statics from '@Pages/Statics';
 
-import { form } from '@Utils/form';
-import { issue } from '@Utils/issue';
+import { handleForm } from '@Utils/form';
+import { add, complete, edit, remove } from '@Utils/issue';
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './App.scss';
 
 function App() {
-  const { register, setValue } = useForm();
+  const { register, setValue, getValues } = useForm();
 
   const [backlog, setBacklog] = createStorage('backlog', []);
   const [todos, setTodos] = createStorage('todos', []);
@@ -30,7 +30,6 @@ function App() {
 
   const [formType, setFormType] = useState('');
 
-  const [issueId, setIssueId] = useState(null);
   const [prevCategory, setPrevCategory] = useState(null);
 
   /**
@@ -64,7 +63,7 @@ function App() {
     <div className="app">
       <Navbar
         createIssue={() => {
-          form.method.handleForm('OPEN_ADD_FORM', {}, setFormType, setValue);
+          handleForm('OPEN_ADD_FORM', {}, setFormType, setValue);
         }}
         showBoard={() => {
           setShowBoard(true);
@@ -81,17 +80,11 @@ function App() {
           <Form
             formType="ADD"
             register={register}
+            getValues={getValues}
             onSubmit={(data) => {
-              issue.method.add(data, categories, setIssueId);
+              add(data, categories);
             }}
-            onClose={() => {
-              form.method.handleForm(
-                'CLOSE_ANY_FORM',
-                {},
-                setFormType,
-                setValue
-              );
-            }}
+            onClose={() => setFormType('close')}
           />
         )}
 
@@ -99,25 +92,17 @@ function App() {
           <Form
             formType="EDIT"
             register={register}
+            getValues={getValues}
             onSubmit={(data) => {
-              issue.method.edit(data, categories, prevCategory);
+              edit(data, categories, prevCategory);
             }}
-            onClose={() => {
-              form.method.handleForm(
-                'CLOSE_ANY_FORM',
-                {},
-                setFormType,
-                setValue
-              );
-            }}
-            issueId={issueId}
+            onClose={() => setFormType('close')}
             setPrevCategory={setPrevCategory}
           />
         )}
       </Popup>
 
       {showStatics && <Statics />}
-
       {showBoard && (
         <Board>
           <Category>
@@ -125,18 +110,13 @@ function App() {
             <Issues
               content={backlog}
               editIssue={(data) => {
-                form.method.handleForm(
-                  'OPEN_EDIT_FORM',
-                  data,
-                  setFormType,
-                  setValue
-                );
+                handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
               }}
               completeIssue={(data) => {
-                issue.method.complete(data, categories);
+                complete(data, categories);
               }}
               deleteIssue={(data) => {
-                issue.method.remove(data, categories);
+                remove(data, categories);
               }}
             />
           </Category>
@@ -145,18 +125,13 @@ function App() {
             <Issues
               content={todos}
               editIssue={(data) => {
-                form.method.handleForm(
-                  'OPEN_EDIT_FORM',
-                  data,
-                  setFormType,
-                  setValue
-                );
+                handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
               }}
               completeIssue={(data) => {
-                issue.method.complete(data, categories);
+                complete(data, categories);
               }}
               deleteIssue={(data) => {
-                issue.method.remove(data, categories);
+                remove(data, categories);
               }}
             />
           </Category>
@@ -165,18 +140,13 @@ function App() {
             <Issues
               content={inprogress}
               editIssue={(data) => {
-                form.method.handleForm(
-                  'OPEN_EDIT_FORM',
-                  data,
-                  setFormType,
-                  setValue
-                );
+                handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
               }}
               completeIssue={(data) => {
-                issue.method.complete(data, categories);
+                complete(data, categories);
               }}
               deleteIssue={(data) => {
-                issue.method.remove(data, categories);
+                remove(data, categories);
               }}
             />
           </Category>
@@ -185,18 +155,13 @@ function App() {
             <Issues
               content={inreview}
               editIssue={(data) => {
-                form.method.handleForm(
-                  'OPEN_EDIT_FORM',
-                  data,
-                  setFormType,
-                  setValue
-                );
+                handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
               }}
               completeIssue={(data) => {
-                issue.method.complete(data, categories);
+                complete(data, categories);
               }}
               deleteIssue={(data) => {
-                issue.method.remove(data, categories);
+                remove(data, categories);
               }}
             />
           </Category>
@@ -205,18 +170,13 @@ function App() {
             <Issues
               content={done}
               editIssue={(data) => {
-                form.method.handleForm(
-                  'OPEN_EDIT_FORM',
-                  data,
-                  setFormType,
-                  setValue
-                );
+                handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
               }}
               completeIssue={() => {
                 alert('Issue cant be marked as done again!');
               }}
               deleteIssue={(data) => {
-                issue.method.remove(data, categories);
+                remove(data, categories);
               }}
             />
           </Category>
