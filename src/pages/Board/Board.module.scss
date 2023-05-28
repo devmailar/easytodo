@@ -10,13 +10,8 @@
   box-shadow: 0.2rem 0.1rem 0.6rem #202020;
 }
 
-@media only screen and (max-width: 1200px) {
-  .app {
-    .board {
-      flex-wrap: wrap;
-      .board-list {
-        height: auto;
-      }
-    }
+@media (max-width: 1200px) {
+  .board {
+    flex-wrap: wrap;
   }
 }
