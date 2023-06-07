@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { BsCalendar2Week, BsPen } from 'react-icons/bs';
 import { GiCheckMark } from 'react-icons/gi';
@@ -88,20 +89,34 @@ export default function Issues({
       }
 
       return (
-        <li key={index} className={styles.issue}>
-          <Header title={issueProps.title} />
-          <Body description={issueProps.description} />
-          <Footer
-            index={index}
-            color={color}
-            issue={issueProps}
-            handleEdit={(d) => {
-              editIssue(d);
-            }}
-            handleComplete={completeIssue}
-            handleDelete={deleteIssue}
-          />
-        </li>
+        <Draggable
+          draggableId={issueProps.id.toString()}
+          key={issueProps.id}
+          index={index}
+        >
+          {(provided) => (
+            <div
+              className={styles.issue}
+              id={issueProps.id}
+              {...provided.dragHandleProps}
+              {...provided.draggableProps}
+              ref={provided.innerRef}
+            >
+              <Header title={issueProps.title} />
+              <Body description={issueProps.description} />
+              <Footer
+                index={index}
+                color={color}
+                issue={issueProps}
+                handleEdit={(d) => {
+                  editIssue(d);
+                }}
+                handleComplete={completeIssue}
+                handleDelete={deleteIssue}
+              />
+            </div>
+          )}
+        </Draggable>
       );
     });
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const createStorage = (name, defaultValue) => {
+export const createStorage = (name, defaultValue) => {
   const [data, setData] = useState(() => {
     const items = window.localStorage.getItem(name);
     return items ? JSON.parse(items) : defaultValue;
@@ -13,7 +13,7 @@ const createStorage = (name, defaultValue) => {
   return [data, setData];
 };
 
-const getStorage = (name) => {
+export const getStorage = (name) => {
   const [data] = useState(() => {
     const items = window.localStorage.getItem(name);
     return JSON.parse(items);
@@ -21,5 +21,3 @@ const getStorage = (name) => {
 
   return [data];
 };
-
-export { createStorage, getStorage };
