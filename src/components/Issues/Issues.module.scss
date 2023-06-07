@@ -67,6 +67,7 @@
         cursor: pointer;
 
         svg {
+          box-sizing: unset;
           padding: 0.4rem;
           border-radius: 0.4rem;
           font-weight: bold;
