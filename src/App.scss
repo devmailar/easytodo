@@ -4,14 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: system-ui;
-  background: #242424;
-  box-sizing: border-box;
+  font-stretch: condensed;
+  background-color: #242424;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 img,
@@ -21,19 +26,7 @@ video {
   display: block;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .material {
   background: #1c1c1c;
   box-shadow: 0rem 0rem 0.1rem #6f6f6f;
-}
-
-@media (max-width: 1200px) {
-  .category {
-    height: auto;
-    overflow: hidden;
-  }
 }

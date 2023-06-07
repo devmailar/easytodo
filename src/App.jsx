@@ -1,26 +1,24 @@
-import Category from '@Components/Category';
 import Form from '@Components/Form';
 import Issues from '@Components/Issues';
 import Navbar from '@Components/Navbar';
 import Popup from '@Components/Popup';
 
-import { createStorage } from '@Hooks/storage';
-
 import Board from '@Pages/Board';
 import Statics from '@Pages/Statics';
 
-import { handleForm } from '@Utils/form';
-import { add, complete, edit, remove } from '@Utils/issue';
+import { createStorage } from '@Hooks/storage';
+
+import { handle } from '@Services/form';
+import { add, complete, edit, remove } from '@Services/issue';
 
 import { useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useForm } from 'react-hook-form';
 import './App.scss';
 
-function App() {
+export default function App() {
   const { register, setValue, getValues } = useForm();
 
-  // This is hooks "createStorage"
   const [backlog, setBacklog] = createStorage('backlog', []);
   const [todos, setTodos] = createStorage('todos', []);
   const [inprogress, setInProgress] = createStorage('inprogress', []);
@@ -31,7 +29,6 @@ function App() {
   const [showStatics, setShowStatics] = useState(false);
 
   const [formType, setFormType] = useState('');
-
   const [prevCategory, setPrevCategory] = useState(null);
 
   /**
@@ -53,40 +50,35 @@ function App() {
       return;
     }
 
-    if (
-      source.droppableId === destination.droppableId &&
-      source.index === destination.index
-    ) {
-      return;
-    }
+    const sourceCategory = source.droppableId;
+    const destinationCategory = destination.droppableId;
+    const destinationTodoIndex = destination.index;
 
     if (type === 'category') {
       const reorderedItems = [...categories[source.droppableId].items];
       const [removedIssue] = reorderedItems.splice(source.index, 1);
 
-      reorderedItems.splice(destination.index, 0, removedIssue);
+      reorderedItems.splice(destinationTodoIndex, 0, removedIssue);
 
-      console.log(destination);
-
-      switch (source.droppableId) {
+      switch (sourceCategory) {
         case 'backlog':
-          console.info('Dragged droppable at backlog');
+          console.info('Moved droppable in backlog category');
           categories.backlog.setter(reorderedItems);
           break;
         case 'todos':
-          console.info('Dragged droppable at todos');
+          console.info('Moved droppable in todos category');
           categories.todos.setter(reorderedItems);
           break;
         case 'inprogress':
-          console.info('Dragged droppable at inprogress');
+          console.info('Moved droppable in inprogress category');
           categories.inprogress.setter(reorderedItems);
           break;
         case 'inreview':
-          console.info('Dragged droppable at review');
+          console.info('Moved droppable in inreview category');
           categories.inreview.setter(reorderedItems);
           break;
         case 'done':
-          console.info('Dragged droppable at done');
+          console.info('Moved droppable in done category');
           categories.done.setter(reorderedItems);
           break;
       }
@@ -97,7 +89,7 @@ function App() {
     <div className="flex flex-col">
       <Navbar
         createIssue={() => {
-          handleForm('OPEN_ADD_FORM', {}, setFormType, setValue);
+          handle('OPEN_ADD_FORM', {}, setFormType, setValue);
         }}
         showBoard={() => {
           setShowBoard(true);
@@ -151,13 +143,13 @@ function App() {
                   <Issues
                     content={backlog}
                     editIssue={(data) => {
-                      handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
+                      handle('OPEN_EDIT_FORM', data, setFormType, setValue);
                     }}
                     completeIssue={(data) => {
                       complete(data, categories);
                     }}
                     deleteIssue={(data) => {
-                      remove(data, categories);
+                      remove(data.title, data.id, data.category, categories);
                     }}
                   />
                   {/* Will not cause laggy user experience */}
@@ -177,13 +169,13 @@ function App() {
                   <Issues
                     content={todos}
                     editIssue={(data) => {
-                      handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
+                      handle('OPEN_EDIT_FORM', data, setFormType, setValue);
                     }}
                     completeIssue={(data) => {
                       complete(data, categories);
                     }}
                     deleteIssue={(data) => {
-                      remove(data, categories);
+                      remove(data.title, data.id, data.category, categories);
                     }}
                   />
                   {provided.placeholder}
@@ -204,13 +196,13 @@ function App() {
                   <Issues
                     content={inprogress}
                     editIssue={(data) => {
-                      handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
+                      handle('OPEN_EDIT_FORM', data, setFormType, setValue);
                     }}
                     completeIssue={(data) => {
                       complete(data, categories);
                     }}
                     deleteIssue={(data) => {
-                      remove(data, categories);
+                      remove(data.title, data.id, data.category, categories);
                     }}
                   />
                   {provided.placeholder}
@@ -231,13 +223,13 @@ function App() {
                   <Issues
                     content={inreview}
                     editIssue={(data) => {
-                      handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
+                      handle('OPEN_EDIT_FORM', data, setFormType, setValue);
                     }}
                     completeIssue={(data) => {
                       complete(data, categories);
                     }}
                     deleteIssue={(data) => {
-                      remove(data, categories);
+                      remove(data.title, data.id, data.category, categories);
                     }}
                   />
                   {provided.placeholder}
@@ -256,13 +248,13 @@ function App() {
                   <Issues
                     content={done}
                     editIssue={(data) => {
-                      handleForm('OPEN_EDIT_FORM', data, setFormType, setValue);
+                      handle('OPEN_EDIT_FORM', data, setFormType, setValue);
                     }}
                     completeIssue={() => {
                       alert('Issue cant be marked as done again!');
                     }}
                     deleteIssue={(data) => {
-                      remove(data, categories);
+                      remove(data.title, data.id, data.category, categories);
                     }}
                   />
                   {provided.placeholder}
@@ -275,5 +267,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
