@@ -48,7 +48,7 @@ const Form = ({
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.header}>
-        <h2>{formType === 'add' ? 'Add new Issue' : 'Edit current Issue'}</h2>
+        <h2>{formType === 'ADD' ? 'Add new Issue' : 'Edit current Issue'}</h2>
         <button onClick={onClose}>&#10005;</button>
       </div>
       <div className={styles.body}>
