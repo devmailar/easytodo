@@ -1,5 +1,5 @@
-const handleForm = (type, data, setFormType, setValue) => {
-  console.log(type, data);
+export const handle = (type, data, setFormType, setValue) => {
+  const { id, title, description, priority, category } = data;
 
   switch (type) {
     case 'OPEN_ADD_FORM':
@@ -12,15 +12,13 @@ const handleForm = (type, data, setFormType, setValue) => {
       break;
     case 'OPEN_EDIT_FORM':
       setFormType('EDIT');
-      setValue('id', data.id);
-      setValue('title', data.title);
-      setValue('description', data.description);
-      setValue('priority', data.priority);
-      setValue('category', data.category);
+      setValue('id', id);
+      setValue('title', title);
+      setValue('description', description);
+      setValue('priority', priority);
+      setValue('category', category);
       break;
     default:
       break;
   }
 };
-
-export { handleForm };

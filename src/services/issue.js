@@ -1,11 +1,13 @@
-const add = (data, categories) => {
+export const add = (data, categories) => {
+  const { id, created, category, title, description, priority } = data;
+
   const newItem = {
-    id: data.id,
-    created: data.created,
-    category: data.category,
-    title: data.title,
-    description: data.description,
-    priority: data.priority,
+    id: id,
+    created: created,
+    category: category,
+    title: title,
+    description: description,
+    priority: priority,
   };
 
   const setCategory = categories[newItem.category].setter;
@@ -14,22 +16,15 @@ const add = (data, categories) => {
   setCategory([...categoryItems, newItem]);
 };
 
-const edit = (data, categories, prevCategory) => {
-  if (!data.id) {
-    console.error('Error: Item ID is null');
+export const edit = (data, categories, prevCategory) => {
+  const { id, created, category, title, description, priority } = data;
+
+  if (!id) {
+    console.error('Error: ID is null');
     return;
   }
 
-  const { id, created, category, title, description, priority } = data;
-
-  const editItem = {
-    id,
-    created,
-    category,
-    title,
-    description,
-    priority,
-  };
+  const editItem = { id, created, category, title, description, priority };
 
   const itemsInPrevCategory = categories[prevCategory].items;
   const itemsInNewCategory = categories[editItem.category].items;
@@ -50,17 +45,19 @@ const edit = (data, categories, prevCategory) => {
   }
 };
 
-const complete = (data, categories) => {
+export const complete = (data, categories) => {
+  const { id, created, category, title, description, priority } = data;
+
   const newItem = {
-    id: data.id,
-    created: data.created,
+    id: id,
+    created: created,
     category: 'done',
-    title: data.title,
-    description: data.description,
-    priority: data.priority,
+    title: title,
+    description: description,
+    priority: priority,
   };
 
-  const prevCategory = data.category;
+  const prevCategory = category;
 
   const itemsInPrevCategory = categories[prevCategory].items;
   const itemsInNewCategory = categories[newItem.category].items;
@@ -73,16 +70,14 @@ const complete = (data, categories) => {
   categories[newItem.category].setter([...itemsInNewCategory, newItem]);
 };
 
-const remove = (data, categories) => {
-  if (!window.confirm('Are you sure you want to delete issue: ' + data.title)) {
+export const remove = (title, id, currentCategory, categories) => {
+  if (!window.confirm(`Are you sure you want to delete issue: ${title}?`)) {
     return;
   }
 
-  const category = categories[data.category];
+  const category = categories[currentCategory];
   const issues = category.items;
-  const updatedIssues = issues.filter((item) => item.id !== data.id);
+  const updatedIssues = issues.filter((item) => item.id !== id);
 
   category.setter(updatedIssues);
 };
-
-export { add, edit, complete, remove };
