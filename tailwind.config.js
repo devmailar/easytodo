@@ -2,7 +2,15 @@
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {},
+    },
+    screens: {
+      phone: '0px',
+      tablet: '640px',
+      laptop: '1024px',
+      desktop: '1280px',
+    },
   },
   plugins: [],
 };

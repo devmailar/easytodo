@@ -55,7 +55,7 @@ export default function App() {
     const destinationTodoIndex = destination.index;
 
     if (type === 'category') {
-      const reorderedItems = [...categories[source.droppableId].items];
+      const reorderedItems = [...categories[sourceCategory].items];
       const [removedIssue] = reorderedItems.splice(source.index, 1);
 
       reorderedItems.splice(destinationTodoIndex, 0, removedIssue);
@@ -80,6 +80,28 @@ export default function App() {
         case 'done':
           console.info('Moved droppable in done category');
           categories.done.setter(reorderedItems);
+          break;
+        default:
+          break;
+      }
+
+      switch (destinationCategory) {
+        case 'backlog':
+          console.info('Dropped droppable to backlog category');
+          break;
+        case 'todos':
+          console.info('Dropped droppable to todos category');
+          break;
+        case 'inprogress':
+          console.info('Dropped droppable to inprogress category');
+          break;
+        case 'inreview':
+          console.info('Dropped droppable to inreview category');
+          break;
+        case 'done':
+          console.info('Dropped droppable to done category');
+          break;
+        default:
           break;
       }
     }
@@ -127,7 +149,6 @@ export default function App() {
           />
         )}
       </Popup>
-
       {showStatics && <Statics />}
       {showBoard && (
         <Board>
