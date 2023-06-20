@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 
-export const createStorage = (name, defaultValue) => {
+/**
+ * Create a storage object and return its data and set state function
+ * @export
+ * @param {*} name
+ * @param {*} defaultValue
+ * @returns {Array} An array with two elements
+ */
+export function createStorage(name, defaultValue) {
   const [data, setData] = useState(() => {
     const items = window.localStorage.getItem(name);
     return items ? JSON.parse(items) : defaultValue;
@@ -11,13 +18,19 @@ export const createStorage = (name, defaultValue) => {
   }, [name, data]);
 
   return [data, setData];
-};
+}
 
-export const getStorage = (name) => {
+/**
+ * Get specific storage from localstorage and return its data
+ * @export
+ * @param {*} name
+ * @return {Array} An array with one element
+ */
+export function getStorage(name) {
   const [data] = useState(() => {
     const items = window.localStorage.getItem(name);
     return JSON.parse(items);
   });
 
   return [data];
-};
+}
